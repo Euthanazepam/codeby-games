@@ -51,6 +51,7 @@ def get_flag() -> str:
 
     unzip()
 
+    # A useful resource with country flags — https://flagpedia.net.
     message_flags = [
         'Cyprus',
         'Oman',
