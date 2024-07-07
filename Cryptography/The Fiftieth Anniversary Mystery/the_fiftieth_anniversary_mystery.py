@@ -1,5 +1,4 @@
-import requests
-
+from requests import get
 from zipfile import ZipFile
 
 base_url = "https://codeby.games"
@@ -16,7 +15,7 @@ def download_zip() -> None:
 
     url = f"{base_url}/{path}?folder={folder}&name={filename}&type={filetype}"
 
-    response = requests.get(url=url)
+    response = get(url=url)
 
     try:
         with open(f"The Fiftieth Anniversary Mystery/{filename}.{filetype}", "wb") as f:

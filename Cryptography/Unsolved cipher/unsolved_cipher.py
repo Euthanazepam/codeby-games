@@ -1,5 +1,4 @@
-import requests
-
+from requests import get
 from zipfile import ZipFile
 
 base_url = "https://codeby.games"
@@ -16,7 +15,7 @@ def download_zip() -> None:
 
     url = f"{base_url}/{path}?folder={folder}&name={filename}&type={filetype}"
 
-    response = requests.get(url=url)
+    response = get(url=url)
 
     try:
         with open(f"Unsolved cipher/{filename}.{filetype}", "wb") as f:
@@ -85,8 +84,8 @@ def get_flag() -> str:
         with open(f"{file_name}", "r") as f:
             not_solved_cipher = f.readlines()
 
-    cipher_text = not_solved_cipher[0][6:].replace('{', '').replace('}', '').strip('\n')
-    key = not_solved_cipher[1][6:].strip('\n')
+    cipher_text = not_solved_cipher[0][6:].replace('{', '').replace('}', '').rstrip()
+    key = not_solved_cipher[1][6:].rstrip()
 
     plain_text = vigenere_decrypt(cipher_text, key)
 

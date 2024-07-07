@@ -1,4 +1,4 @@
-import requests
+from requests import get
 
 base_url = "https://codeby.games"
 path = "game_api/files/download"
@@ -14,7 +14,7 @@ def download_image() -> None:
 
     url = f"{base_url}/{path}?folder={folder}&name={filename}&type={filetype}"
 
-    response = requests.get(url=url)
+    response = get(url=url)
 
     try:
         with open(f"Maria/{filename}.{filetype}", "wb") as f:
