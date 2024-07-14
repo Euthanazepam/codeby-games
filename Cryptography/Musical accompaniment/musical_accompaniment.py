@@ -25,7 +25,7 @@ def download_zip() -> None:
             f.write(response.content)
 
 
-def unzip():
+def unzip() -> None:
     """
     Unpacks a zip file into the current directory.
     """
