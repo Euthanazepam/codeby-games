@@ -25,10 +25,9 @@ def download_zip() -> None:
             f.write(response.content)
 
 
-def unzip() -> str:
+def unzip() -> None:
     """
     Unpacks a zip file into the current directory.
-    :return: Name of file
     """
 
     download_zip()
@@ -36,11 +35,9 @@ def unzip() -> str:
     try:
         with ZipFile(f"Flags!/{filename}.{filetype}") as zf:
             zf.extractall(path="Flags!/")
-            return zf.namelist()[0]
     except FileNotFoundError:
         with ZipFile(f"{filename}.{filetype}") as zf:
             zf.extractall(path=".")
-            return zf.namelist()[0]
 
 
 def get_flag() -> str:
