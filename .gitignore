@@ -16,9 +16,11 @@ venv.bak/
 virtualenv/
 
 # Temp files and dirs
+*.docx
 *.gif
 *.jpg
 *.png
 *.txt
+*.xml
 *.zip
 task
