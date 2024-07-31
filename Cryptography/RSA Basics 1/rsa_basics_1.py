@@ -95,8 +95,8 @@ def get_flag() -> str:
 
     decrypted_message = pow(c, d, n)
 
-    # The key length is 1024 bits. The flag is at the end of the message.
-    flag = decrypted_message.to_bytes(1024, 'big')[-29:].decode()
+    # The flag is at the end of the message.
+    flag = decrypted_message.to_bytes(c.bit_length() // 8, 'big')[-29:].decode()
 
     return flag
 
