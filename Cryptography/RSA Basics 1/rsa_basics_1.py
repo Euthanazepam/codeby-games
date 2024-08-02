@@ -43,7 +43,9 @@ def unpack() -> None:
 
 def get_flag() -> str:
     """
-    https://codeby.games/en/categories/cryptography/173db536-19e0-4510-8516-624e74ff619f
+    Returns the challenge flag https://codeby.games/en/categories/cryptography/173db536-19e0-4510-8516-624e74ff619f
+
+    :return: Flag
     """
 
     unpack()

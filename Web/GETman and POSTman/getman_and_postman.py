@@ -3,7 +3,9 @@ from requests import post
 
 def get_flag() -> str:
     """
-    https://codeby.games/en/categories/web/ca07034b-bde4-4c87-bc9d-bccea9cc9dd1
+    Returns the challenge flag https://codeby.games/en/categories/web/ca07034b-bde4-4c87-bc9d-bccea9cc9dd1
+
+    :return: Flag
     """
 
     base_url = 'http://62.173.140.174'

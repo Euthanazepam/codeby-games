@@ -45,7 +45,9 @@ def unzip() -> str:
 
 def get_flag() -> str:
     """
-    https://codeby.games/en/categories/cryptography/87811258-949b-48f1-8d0e-719c69db4f65
+    Returns the challenge flag https://codeby.games/en/categories/cryptography/87811258-949b-48f1-8d0e-719c69db4f65
+
+    :return: Flag
     """
 
     file_name = unzip()

@@ -26,7 +26,9 @@ def download_image() -> None:
 
 def get_flag() -> str:
     """
-    https://codeby.games/en/categories/cryptography/e8df895a-64d0-48fb-8db7-6e6a6a17ac59
+    Returns the challenge flag https://codeby.games/en/categories/cryptography/e8df895a-64d0-48fb-8db7-6e6a6a17ac59
+
+    :return: Flag
     """
 
     download_image()

@@ -72,7 +72,9 @@ def vigenere_decrypt(cipher_text, key) -> str:
 
 def get_flag() -> str:
     """
-    https://codeby.games/en/categories/cryptography/92e6a4b9-1899-4584-9780-2312da201665
+    Returns the challenge flag https://codeby.games/en/categories/cryptography/92e6a4b9-1899-4584-9780-2312da201665
+
+    :return: Flag
     """
 
     file_name = unzip()
