@@ -1,3 +1,4 @@
+from os.path import exists
 from requests import get
 from zipfile import ZipFile
 
@@ -28,10 +29,12 @@ def download_zip() -> None:
 def unzip() -> str:
     """
     Unpacks a zip file into the current directory.
+
     :return: Name of file
     """
 
-    download_zip()
+    if not exists(f"{filename}.{filetype}"):
+        download_zip()
 
     try:
         with ZipFile(f"Bookworm/{filename}.{filetype}") as zf:
@@ -46,6 +49,8 @@ def unzip() -> str:
 def get_flag() -> str:
     """
     Returns the challenge flag https://codeby.games/en/categories/cryptography/597a5e9a-5b74-4f1d-b3ed-7782b568ac55
+    Dictionary 'mapping' is based on the original story https://www.eapoe.org/works/tales/goldbga2.htm
+    You can also use the decryptor https://www.dcode.fr/gold-bug-poe
 
     :return: Flag
     """
@@ -54,15 +59,10 @@ def get_flag() -> str:
 
     try:
         with open(f"Bookworm/{file_name}", "r") as f:
-            task = f.read().rstrip()    # rstrip() is used to remove the '\n' character from the end of a string
+            task = f.read().rstrip()    # rstrip() is used to remove the '\n' character from the end of a string.
     except FileNotFoundError:
         with open(f"{file_name}", "r") as f:
-            task = f.read().rstrip()    # rstrip() is used to remove the '\n' character from the end of a string
-
-    """
-    The dictionary below is taken from the original story https://www.eapoe.org/works/tales/goldbga2.htm.
-    You can also use the decryptor https://www.dcode.fr/gold-bug-poe.
-    """
+            task = f.read().rstrip()    # rstrip() is used to remove the '\n' character from the end of a string.
 
     mapping = {
         '8': 'e',

@@ -1,3 +1,4 @@
+from os.path import exists
 from requests import get
 from zipfile import ZipFile
 
@@ -30,7 +31,8 @@ def unzip() -> None:
     Unpacks a zip file into the current directory.
     """
 
-    download_zip()
+    if not exists(f"{filename}.{filetype}"):
+        download_zip()
 
     try:
         with ZipFile(f"Art of War/{filename}.{filetype}") as zf:
@@ -44,15 +46,13 @@ def get_flag() -> str:
     """
     Returns the challenge flag https://codeby.games/en/categories/cryptography/627d29d1-0e5f-4bec-ae88-e29888f0d72b
 
+    References:
+        1. Chinese Remainder Calculator — https://www.dcode.fr/chinese-remainder
+
     :return: Flag
     """
 
     unzip()
-
-    """
-    References:
-        1. Chinese Remainder Calculator — https://www.dcode.fr/chinese-remainder
-    """
 
     cipher_text = 25183524468752482838730336135334402772668615375346038
     a = 3339

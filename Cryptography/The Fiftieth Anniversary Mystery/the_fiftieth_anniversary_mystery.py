@@ -1,3 +1,4 @@
+from os.path import exists
 from requests import get
 from zipfile import ZipFile
 
@@ -30,7 +31,8 @@ def unzip() -> None:
     Unpacks a zip file into the current directory.
     """
 
-    download_zip()
+    if not exists(f"{filename}.{filetype}"):
+        download_zip()
 
     try:
         with ZipFile(f"The Fiftieth Anniversary Mystery/{filename}.{filetype}") as zf:
@@ -44,16 +46,14 @@ def get_flag() -> str:
     """
     Returns the challenge flag https://codeby.games/en/categories/cryptography/3082faf3-0f68-4293-be23-a6676abce9b7
 
+    References:
+        1. https://zodiackiller.com/Letters.html
+        2. Resource for searching similar Unicode symbols — http://shapecatcher.com/index.html
+
     :return: Flag
     """
 
     unzip()
-
-    """
-    References:
-        1. https://zodiackiller.com/Letters.html.
-        2. Resource for searching similar unicode symbols — http://shapecatcher.com/index.html.
-    """
 
     # The encrypted text uses similarly written symbols.
     encrypted_message = 'OXHJπYO⌖🞎ꟼI'

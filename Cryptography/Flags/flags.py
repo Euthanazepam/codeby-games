@@ -1,3 +1,4 @@
+from os.path import exists
 from requests import get
 from zipfile import ZipFile
 
@@ -30,7 +31,8 @@ def unzip() -> None:
     Unpacks a zip file into the current directory.
     """
 
-    download_zip()
+    if not exists(f"{filename}.{filetype}"):
+        download_zip()
 
     try:
         with ZipFile(f"Flags/{filename}.{filetype}") as zf:
@@ -43,13 +45,13 @@ def unzip() -> None:
 def get_flag() -> str:
     """
     Returns the challenge flag https://codeby.games/en/categories/cryptography/a7676d01-1141-4788-a4b2-4bd8b546897b
+    A useful resource with country flags — https://flagpedia.net
 
     :return: Flag
     """
 
     unzip()
 
-    # A useful resource with country flags — https://flagpedia.net.
     message_flags = [
         'Cyprus',
         'Oman',

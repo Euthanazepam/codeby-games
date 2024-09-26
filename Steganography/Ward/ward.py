@@ -1,3 +1,4 @@
+from os.path import exists
 from requests import get
 from xml.etree.ElementTree import parse
 from zipfile import ZipFile
@@ -29,10 +30,12 @@ def download_zip() -> None:
 def unzip() -> str:
     """
     Unpacks a zip file into the current directory.
+
     :return: Name of file
     """
 
-    download_zip()
+    if not exists(f"{filename}.{filetype}"):
+        download_zip()
 
     try:
         with ZipFile(f"Ward/{filename}.{filetype}") as zf:
@@ -48,15 +51,13 @@ def get_flag() -> str:
     """
     Returns the challenge flag https://codeby.games/en/categories/steganography/e73e49dc-f033-4af4-9daa-004f0afb1c90
 
+    References:
+        1. Anatomy of a WordProcessingML File — http://www.officeopenxml.com/anatomyofOOXML.php
+
     :return: Flag
     """
 
     file_name = unzip()
-
-    """
-    References:
-        1. Anatomy of a WordProcessingML File — http://www.officeopenxml.com/anatomyofOOXML.php
-    """
 
     xml_document = "word/document.xml"
 

@@ -1,3 +1,4 @@
+from os.path import exists
 from requests import get
 from zipfile import ZipFile
 
@@ -28,10 +29,12 @@ def download_zip() -> None:
 def unzip() -> str:
     """
     Unpacks a zip file into the current directory.
+
     :return: Name of file
     """
 
-    download_zip()
+    if not exists(f"{filename}.{filetype}"):
+        download_zip()
 
     try:
         with ZipFile(f"Unsolved cipher/{filename}.{filetype}") as zf:
@@ -46,6 +49,7 @@ def unzip() -> str:
 def vigenere_decrypt(cipher_text, key) -> str:
     """
     Decryption function for the Vigenère cipher.
+
     Source: https://thepythoncode.com/article/implementing-the-vigenere-cipher-in-python
 
     :param cipher_text: Encrypted text

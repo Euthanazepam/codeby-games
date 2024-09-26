@@ -1,3 +1,4 @@
+from os.path import exists
 from requests import get
 from zipfile import ZipFile
 
@@ -28,10 +29,12 @@ def download_zip() -> None:
 def unzip() -> str:
     """
     Unpacks a zip file into the current directory.
+
     :return: Name of file
     """
 
-    download_zip()
+    if not exists(f"{filename}.{filetype}"):
+        download_zip()
 
     try:
         with ZipFile(f"Suspect/{filename}.{filetype}") as zf:

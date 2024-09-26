@@ -1,4 +1,5 @@
 from factordb.factordb import FactorDB
+from os.path import exists
 from requests import get
 from zipfile import ZipFile
 
@@ -31,7 +32,8 @@ def unzip() -> None:
     Unpacks a zip file into the current directory.
     """
 
-    download_zip()
+    if not exists(f"{filename}.{filetype}"):
+        download_zip()
 
     try:
         with ZipFile(f"RSA 2 Basics/{filename}.{filetype}") as zf:
@@ -44,6 +46,10 @@ def unzip() -> None:
 def get_flag() -> str:
     """
     Returns the challenge flag https://codeby.games/en/categories/cryptography/b0967cfb-8c27-4491-b9a4-4278635c2ccd
+
+    References:
+        1. RSA Decoder — https://www.dcode.fr/rsa-cipher
+        2. FactorDB — http://factordb.com
 
     :return: Flag
     """
@@ -64,17 +70,11 @@ def get_flag() -> str:
         with open("flag.txt", "rb") as f:
             flag_txt = f.read()
 
-    """
-    References:
-        1. RSA Decoder — https://www.dcode.fr/rsa-cipher
-        2. FactorDB — http://factordb.com
-    """
-
     c = int.from_bytes(flag_txt)
     n = int(data[0][2:].strip(',\n'))
     e = int(data[1][2:].strip('\n'))
 
-    # Use http://factordb.com to factorize n
+    # Use http://factordb.com to factorize n.
     f = FactorDB(n)
     f.connect()
     p, q = f.get_factor_list()

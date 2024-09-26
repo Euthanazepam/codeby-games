@@ -1,3 +1,4 @@
+from os.path import exists
 from requests import get
 from zipfile import ZipFile
 
@@ -28,10 +29,12 @@ def download_zip() -> None:
 def unzip() -> str:
     """
     Unpacks a zip file into the current directory.
+
     :return: Name of file
     """
 
-    download_zip()
+    if not exists(f"{filename}.{filetype}"):
+        download_zip()
 
     try:
         with ZipFile(f"Word for word/{filename}.{filetype}") as zf:
@@ -47,6 +50,9 @@ def get_flag() -> str:
     """
     Returns the challenge flag https://codeby.games/en/categories/cryptography/bedc74ff-5cd2-4ed5-b825-602b95797f1b
 
+    References:
+        1. Reverse hash decoder — https://md5hashing.net/hash
+
     :return: Flag
     """
 
@@ -58,11 +64,6 @@ def get_flag() -> str:
     except FileNotFoundError:
         with open(f"{file_name}", "r") as f:
             task = f.read()
-
-    """
-    References:
-        1. Reverse hash decoder — https://md5hashing.net/hash
-    """
 
     hashes = task.split(' ')
 

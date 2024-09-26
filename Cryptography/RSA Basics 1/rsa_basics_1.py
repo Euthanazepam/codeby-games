@@ -1,5 +1,6 @@
 import tarfile
 
+from os.path import exists
 from requests import get
 
 base_url = "https://codeby.games"
@@ -31,7 +32,8 @@ def unpack() -> None:
     Unpacks a tar file into the current directory.
     """
 
-    download_tar()
+    if not exists(f"{filename}.{filetype}"):
+        download_tar()
 
     try:
         with tarfile.open(f"RSA Basics 1/{filename}.{filetype}", 'r:*') as tar:
@@ -44,6 +46,24 @@ def unpack() -> None:
 def get_flag() -> str:
     """
     Returns the challenge flag https://codeby.games/en/categories/cryptography/173db536-19e0-4510-8516-624e74ff619f
+    A bit of theory:
+        m — message (plain text)
+        c — cipher text
+
+        n = p * q
+        φ(n) = (p - 1) * (q - 1)
+
+        d — secret exponent
+        d = e^(-1) mod φ(n)
+
+        Public key:     (n, e)
+        Private key:    (n, d)
+
+        Encryption:     c = m^e mod n
+        Decryption:     m = c^d mod n
+
+    References:
+        1. RSA Decoder — https://www.dcode.fr/rsa-cipher
 
     :return: Flag
     """
@@ -71,29 +91,6 @@ def get_flag() -> str:
     phi = (p - 1) * (q - 1)
     d = pow(e, -1, phi)
     c = int.from_bytes(flag_txt)
-
-    """
-    References:
-        1. RSA Decoder — https://www.dcode.fr/rsa-cipher
-    
-    ======================================================================
-    
-    A bit of theory:
-        m — message (plain text)
-        c — cipher text
-        
-        n = p * q
-        φ(n) = (p - 1) * (q - 1)
-        
-        d — secret exponent
-        d = e^(-1) mod φ(n)
-        
-        Public key:     (n, e)
-        Private key:    (n, d)
-        
-        Encryption:     c = m^e mod n
-        Decryption:     m = c^d mod n
-    """
 
     decrypted_message = pow(c, d, n)
 

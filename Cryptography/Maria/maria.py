@@ -1,3 +1,4 @@
+from os.path import exists
 from requests import get
 
 base_url = "https://codeby.games"
@@ -28,16 +29,15 @@ def get_flag() -> str:
     """
     Returns the challenge flag https://codeby.games/en/categories/cryptography/0c99ff07-4ef9-4dd4-80cd-8eeb6f6ddb3b
 
+    References:
+        1. Character table — https://www.dcode.fr/tools/mary-stuart/images/alphabet.png
+        2. Mary Stuart code decipherer — https://www.dcode.fr/mary-stuart-code
+
     :return: Flag
     """
 
-    download_image()
-
-    """
-    References:
-        1. Character table — https://www.dcode.fr/tools/mary-stuart/images/alphabet.png.
-        2. Mary Stuart code decipherer — https://www.dcode.fr/mary-stuart-code.
-    """
+    if not exists(f"{filename}.{filetype}"):
+        download_image()
 
     # The encrypted text uses similarly written symbols.
     encrypted_message = "ⴷ🜄ᚒ⧜‡8⌐ɱO‡🜄Cε∞⧜Oᚒ⏗"

@@ -1,3 +1,4 @@
+from os.path import exists
 from requests import get
 from zipfile import ZipFile
 
@@ -28,10 +29,12 @@ def download_zip() -> None:
 def unzip() -> str:
     """
     Unpacks a zip file into the current directory.
+
     :return: Name of file
     """
 
-    download_zip()
+    if not exists(f"{filename}.{filetype}"):
+        download_zip()
 
     try:
         with ZipFile(f"Gibberish/{filename}.{filetype}") as zf:
@@ -46,6 +49,7 @@ def unzip() -> str:
 def decode_message() -> str:
     """
     Returns the challenge flag https://codeby.games/en/categories/cryptography/173c3580-34f9-45cb-aedc-5e5d06b83d80
+    Useful resource for determining text encoding — https://www.online-decoder.com/ru
 
     :return: Flag
     """
@@ -58,10 +62,6 @@ def decode_message() -> str:
     except FileNotFoundError:
         with open(f"{file_name}", "r") as f:
             task = f.readlines()
-
-    """
-    Useful resource for determining text encoding — https://www.online-decoder.com/ru.
-    """
 
     decoded_message = (f"{task[0].rstrip().encode(encoding='koi8-r').decode('utf-8')}\n"
                        f"{task[2].rstrip().encode(encoding='cp1251').decode('utf-8')}\n"

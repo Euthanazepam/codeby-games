@@ -1,3 +1,4 @@
+from os.path import exists
 from requests import get
 from zipfile import ZipFile
 
@@ -28,10 +29,12 @@ def download_zip() -> None:
 def unzip() -> str:
     """
     Unpacks a zip file into the current directory.
+
     :return: Name of file
     """
 
-    download_zip()
+    if not exists(f"{filename}.{filetype}"):
+        download_zip()
 
     try:
         with ZipFile(f"Family/{filename}.{filetype}") as zf:
@@ -46,6 +49,9 @@ def unzip() -> str:
 def get_flag() -> str:
     """
     Returns the challenge flag https://codeby.games/en/categories/cryptography/74035f68-c4d6-4d40-a9c0-ea969c660a2b
+    References:
+        1. ASCII Chart — https://python-reference.readthedocs.io/en/latest/docs/str/ASCII.html
+        2. String Encoder / Decoder — https://dencode.com/en/string/unicode-escape
 
     :return: Flag
     """
@@ -58,12 +64,6 @@ def get_flag() -> str:
     except FileNotFoundError:
         with open(f"{file_name}", "r") as f:
             family = f.read()
-
-    """
-    References:
-        1. ASCII Chart — https://python-reference.readthedocs.io/en/latest/docs/str/ASCII.html
-        2. String Encoder / Decoder — https://dencode.com/en/string/unicode-escape
-    """
 
     # I haven't figured out yet how to elegantly turn "U+73 U+79 U+73 U+74 U+33 U+6D U+73 U+7D"
     # into "\u0073\u0079\u0073\u0074\u0033\u006D\u0073\u007D".

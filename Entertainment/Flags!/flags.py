@@ -1,3 +1,4 @@
+from os.path import exists
 from requests import get
 from zipfile import ZipFile
 
@@ -30,7 +31,8 @@ def unzip() -> None:
     Unpacks a zip file into the current directory.
     """
 
-    download_zip()
+    if not exists(f"{filename}.{filetype}"):
+        download_zip()
 
     try:
         with ZipFile(f"Flags!/{filename}.{filetype}") as zf:
@@ -44,17 +46,15 @@ def get_flag() -> str:
     """
     Returns the challenge flag https://codeby.games/en/categories/misc/eea8f7b2-d17f-4720-9f32-91f4d3857c54
 
-    :return: Flag
-    """
-
-    unzip()
-
-    """
     References:
         1. Signal Flags — http://www.quadibloc.com/other/flaint.htm
         2. Signal flags of NATO fleets — http://www.vexillographia.ru/signal_nt.htm
         3. Navy Signals Code — https://www.dcode.fr/maritime-signals-code
+
+    :return: Flag
     """
+
+    unzip()
 
     mapping = {
         48: "0", 49: "1", 50: "2", 51: "3", 52: "4", 53: "5",

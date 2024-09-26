@@ -1,4 +1,5 @@
 from base64 import b64decode
+from os.path import exists
 from requests import get
 
 base_url = "https://codeby.games"
@@ -29,16 +30,15 @@ def get_flag() -> str:
     """
     Returns the challenge flag https://codeby.games/en/categories/steganography/a1e6e8a9-0ea3-4605-880e-c7cf528d2980
 
-    :return: Flag
-    """
-
-    download_file()
-
-    """
     References:
         1. ASCII to Image Converter — https://onlinetools.com/ascii/convert-ascii-to-image
         2. Image to ASCII — https://www.asciiart.eu/image-to-ascii
+
+    :return: Flag
     """
+
+    if not exists(f"{filename}.{filetype}"):
+        download_file()
 
     # Encoded the flag in base64 to avoid spoilers.
     flag = b64decode('Q09ERUJZe0dPT0RfSk9CX01ZX0ZSMUVORCF9').decode()

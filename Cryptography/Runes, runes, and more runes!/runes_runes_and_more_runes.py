@@ -1,3 +1,4 @@
+from os.path import exists
 from requests import get
 
 base_url = "https://codeby.games"
@@ -28,15 +29,14 @@ def get_flag() -> str:
     """
     Returns the challenge flag https://codeby.games/en/categories/cryptography/e8df895a-64d0-48fb-8db7-6e6a6a17ac59
 
+    References:
+        1. Elder Futhark Decoder — https://www.dcode.fr/elder-futhark
+
     :return: Flag
     """
 
-    download_image()
-
-    """
-    References:
-        1. Elder Futhark Decoder — https://www.dcode.fr/elder-futhark
-    """
+    if not exists(f"{filename}.{filetype}"):
+        download_image()
 
     runes = 'ᚱᚢᚾᛖᛋ ᚫᚱᛖ ᛏᛟᛟ ᚺᚫᚱᛞ'
 

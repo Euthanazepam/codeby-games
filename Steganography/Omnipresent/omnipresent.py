@@ -1,4 +1,5 @@
 from base64 import b64decode
+from os.path import exists
 from requests import get
 from zipfile import ZipFile
 
@@ -31,7 +32,8 @@ def unzip() -> None:
     Unpacks a zip file into the current directory.
     """
 
-    download_zip()
+    if not exists(f"{filename}.{filetype}"):
+        download_zip()
 
     try:
         with ZipFile(f"Omnipresent/{filename}.{filetype}") as zf:
@@ -44,20 +46,15 @@ def unzip() -> None:
 def get_flag() -> str:
     """
     Returns the challenge flag https://codeby.games/en/categories/steganography/a6c02b63-e625-418f-8a94-82afe20a2d8b
+    Extract alpha channel from png. It contains flag.
+
+    References:
+        1. PNG Alpha Channel Extractor — https://onlinepngtools.com/extract-alpha-channel-from-png
 
     :return: Flag
     """
 
     unzip()
-
-    """
-    References:
-        1. PNG Alpha Channel Extractor — https://onlinepngtools.com/extract-alpha-channel-from-png
-
-    ==============================================================================================
-
-    Extract alpha channel from png. It contains flag.
-    """
 
     # Encoded the flag in base64 to avoid spoilers.
     flag = b64decode('Q09ERUJZezRuZF9pX2M0bl9zZTN9').decode()

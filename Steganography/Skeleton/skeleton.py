@@ -1,4 +1,5 @@
 from base64 import b64decode
+from os.path import exists
 from requests import get
 from zipfile import ZipFile
 
@@ -31,7 +32,8 @@ def unzip() -> None:
     Unpacks a zip file into the current directory.
     """
 
-    download_zip()
+    if not exists(f"{filename}.{filetype}"):
+        download_zip()
 
     try:
         with ZipFile(f"Skeleton/{filename}.{filetype}") as zf:
@@ -44,21 +46,16 @@ def unzip() -> None:
 def get_flag() -> str:
     """
     Returns the challenge flag https://codeby.games/en/categories/steganography/7ebaf2d5-a03c-44ed-9f77-7adea3e4834f
+    The flag is contained in frame 53 of the gif.
+
+    References:
+        1. GIF frame extractor (splitter) — https://ezgif.com/split
+        2. GIMP — https://www.gimp.org/downloads
 
     :return: Flag
     """
 
     unzip()
-
-    """
-    References:
-        1. GIF frame extractor (splitter) — https://ezgif.com/split
-        2. GIMP — https://www.gimp.org/downloads
-    
-    ===============================================================
-    
-    The flag is contained in frame 53 of the gif.
-    """
 
     # Encoded the flag in base64 to avoid spoilers.
     flag = b64decode('Q09ERUJZezRfUzNDUjM3XzFOXzdIM19TSzNMM1QwTl9XNFNfRjBVTkR9').decode()

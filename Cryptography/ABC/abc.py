@@ -1,3 +1,4 @@
+from os.path import exists
 from requests import get
 from zipfile import ZipFile
 
@@ -28,10 +29,12 @@ def download_zip() -> None:
 def unzip() -> str:
     """
     Unpacks a zip file into the current directory.
+
     :return: Name of file
     """
 
-    download_zip()
+    if not exists(f"{filename}.{filetype}"):
+        download_zip()
 
     try:
         with ZipFile(f"ABC/{filename}.{filetype}") as zf:
@@ -46,6 +49,9 @@ def unzip() -> str:
 def get_flag() -> str:
     """
     Returns the challenge flag https://codeby.games/en/categories/cryptography/87811258-949b-48f1-8d0e-719c69db4f65
+    Need to count the number of hyphens, not the number of characters in a line.
+    А space has been added at the end of the sixth line.
+    So, the word 'know' is formed incorrectly ('koow' instead of 'know').
 
     :return: Flag
     """
@@ -68,9 +74,6 @@ def get_flag() -> str:
     flag_chars = []
 
     for line in task:
-        # We count the number of hyphens, not the number of characters in a line.
-        # А space has been added at the end of the sixth line.
-        # Because of this, the word 'know' is formed incorrectly ('koow' instead of 'know').
         flag_chars.append(alphabet[len([i for i in line if i == '-'])])
 
     flag = 'CODEBY{' + ''.join(flag_chars) + '}'

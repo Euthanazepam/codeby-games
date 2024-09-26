@@ -1,3 +1,4 @@
+from os.path import exists
 from requests import get
 from zipfile import ZipFile
 
@@ -30,7 +31,8 @@ def unzip() -> None:
     Unpacks a zip file into the current directory.
     """
 
-    download_zip()
+    if not exists(f"{filename}.{filetype}"):
+        download_zip()
 
     try:
         with ZipFile(f"Musical accompaniment/{filename}.{filetype}") as zf:
@@ -44,15 +46,13 @@ def get_flag() -> str:
     """
     Returns the challenge flag https://codeby.games/en/categories/cryptography/f1c174bf-475e-43e9-af96-3c2f2a44c408
 
+    References:
+        1. Music Sheets Decoder — https://www.dcode.fr/music-sheet-cipher
+
     :return: Flag
     """
 
     unzip()
-
-    """
-    References:
-        1. Music Sheets Decoder — https://www.dcode.fr/music-sheet-cipher
-    """
 
     mapping = {
         'do1': 'o',
