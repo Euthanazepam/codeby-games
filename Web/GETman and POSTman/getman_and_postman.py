@@ -8,17 +8,17 @@ def get_flag() -> str:
     :return: Flag
     """
 
-    base_url = 'http://62.173.140.174'
+    base_url = "http://62.173.140.174"
     port = 16002
-    query_param = 'want_flag=YES'
+    query_param = "want_flag=YES"
     payload = {"admin": 1, "message": "Hello"}
 
-    response = post(f'{base_url}:{port}?{query_param}', json=payload)
+    response = post(f"{base_url}:{port}?{query_param}", json=payload)
 
-    flag = response.text.split('\n')[-1].split(': ')[-1]
+    flag = response.text.split("\n")[-1].split(": ")[-1]
 
     return flag
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(get_flag())

