@@ -54,7 +54,8 @@ def get_flag() -> str:
     :return: Flag
     """
 
-    unzip()
+    if not exists("task.png"):
+        unzip()
 
     mapping = {
         48: "0", 49: "1", 50: "2", 51: "3", 52: "4", 53: "5",
