@@ -52,7 +52,8 @@ def get_flag() -> str:
     :return: Flag
     """
 
-    unzip()
+    if not exists("music.png"):
+        unzip()
 
     mapping = {
         'do1': 'o',

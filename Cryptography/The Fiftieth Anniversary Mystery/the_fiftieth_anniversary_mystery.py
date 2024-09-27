@@ -53,7 +53,8 @@ def get_flag() -> str:
     :return: Flag
     """
 
-    unzip()
+    if not exists("task.jpg"):
+        unzip()
 
     # The encrypted text uses similarly written symbols.
     encrypted_message = 'OXHJπYO⌖🞎ꟼI'

@@ -52,7 +52,8 @@ def get_flag() -> str:
     :return: Flag
     """
 
-    unzip()
+    if not exists("task.txt"):
+        unzip()
 
     cipher_text = 25183524468752482838730336135334402772668615375346038
     a = 3339

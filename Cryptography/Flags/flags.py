@@ -50,7 +50,8 @@ def get_flag() -> str:
     :return: Flag
     """
 
-    unzip()
+    if not exists("task.jpg"):
+        unzip()
 
     message_flags = [
         'Cyprus',

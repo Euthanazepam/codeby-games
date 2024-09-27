@@ -68,7 +68,8 @@ def get_flag() -> str:
     :return: Flag
     """
 
-    unpack()
+    if not exists("data.txt") or not exists("flag.txt"):
+        unpack()
 
     try:
         with open("RSA Basics 1/data.txt", "r") as f:

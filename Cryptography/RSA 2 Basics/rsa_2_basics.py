@@ -54,7 +54,8 @@ def get_flag() -> str:
     :return: Flag
     """
 
-    unzip()
+    if not exists("data.txt") or not exists("flag.txt"):
+        unzip()
 
     try:
         with open("RSA 2 Basics/data.txt", "r") as f:
