@@ -41,10 +41,10 @@ def get_flag() -> str:
         download_file()
 
     # Encoded the flag in base64 to avoid spoilers.
-    flag = b64decode('Q09ERUJZe0dPT0RfSk9CX01ZX0ZSMUVORCF9').decode()
+    flag = b64decode("Q09ERUJZe0dPT0RfSk9CX01ZX0ZSMUVORCF9").decode()
 
     return flag
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(get_flag())

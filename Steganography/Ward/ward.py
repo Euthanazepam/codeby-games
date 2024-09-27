@@ -72,10 +72,10 @@ def get_flag() -> str:
     root = tree.getroot()
 
     # The flag is located in the 'w:bottom' attribute of the 'w:document > w:body > w:sectPr > w:pgMar' object.
-    flag = root[0][-1][2].attrib['{http://schemas.openxmlformats.org/wordprocessingml/2006/main}bottom']
+    flag = root[0][-1][2].attrib["{http://schemas.openxmlformats.org/wordprocessingml/2006/main}bottom"]
 
     return flag
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(get_flag())
