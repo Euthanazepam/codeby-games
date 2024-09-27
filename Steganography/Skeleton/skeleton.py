@@ -55,13 +55,14 @@ def get_flag() -> str:
     :return: Flag
     """
 
-    unzip()
+    if not exists("task.gif"):
+        unzip()
 
     # Encoded the flag in base64 to avoid spoilers.
-    flag = b64decode('Q09ERUJZezRfUzNDUjM3XzFOXzdIM19TSzNMM1QwTl9XNFNfRjBVTkR9').decode()
+    flag = b64decode("Q09ERUJZezRfUzNDUjM3XzFOXzdIM19TSzNMM1QwTl9XNFNfRjBVTkR9").decode()
 
     return flag
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(get_flag())

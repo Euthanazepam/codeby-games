@@ -54,13 +54,14 @@ def get_flag() -> str:
     :return: Flag
     """
 
-    unzip()
+    if not exists("Omniscient.png"):
+        unzip()
 
     # Encoded the flag in base64 to avoid spoilers.
-    flag = b64decode('Q09ERUJZezRuZF9pX2M0bl9zZTN9').decode()
+    flag = b64decode("Q09ERUJZezRuZF9pX2M0bl9zZTN9").decode()
 
     return flag
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(get_flag())
