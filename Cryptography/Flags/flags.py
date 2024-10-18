@@ -53,41 +53,60 @@ def get_flag() -> str:
     if not exists("task.jpg"):
         unzip()
 
-    message_flags = [
-        'Cyprus',
-        'Oman',
-        'Dominica',
-        'Egypt',
-        'Brazil',
-        'Yemen',
-        'Yemen',
-        'Oman',
-        'Uganda',
-        'Albania',
-        'Romania',
-        'Estonia',
-        'India',
-        'Niger',
-        'Vietnam',
-        'Ecuador',
-        'Nigeria',
-        'Turkey',
-        'Italy',
-        'Venezuela',
-        'Estonia',
-    ]
-
-    flag_chars = []
+    flags = {
+        "🇦🇱": "Albania",
+        "🇧🇷": "Brazil",
+        "🇨🇾": "Cyprus",
+        "🇩🇲": "Dominica",
+        "🇪🇨": "Ecuador",
+        "🇪🇬": "Egypt",
+        "🇪🇪": "Estonia",
+        "🇮🇳": "India",
+        "🇮🇹": "Italy",
+        "🇳🇪": "Niger",
+        "🇳🇬": "Nigeria",
+        "🇴🇲": "Oman",
+        "🇷🇴": "Romania",
+        "🇹🇷": "Turkey",
+        "🇺🇬": "Uganda",
+        "🇻🇪": "Venezuela",
+        "🇻🇳": "Vietnam",
+        "🇾🇪": "Yemen"
+    }
 
     # Take the first letter of the country's name.
-    for item in message_flags:
-        flag_chars.append(item[0])
+    message = [
+        flags["🇨🇾"][0],
+        flags["🇴🇲"][0],
+        flags["🇩🇲"][0],
+        flags["🇪🇬"][0],
+        flags["🇧🇷"][0],
+        flags["🇾🇪"][0],
+        "{",
+        flags["🇾🇪"][0].lower(),
+        flags["🇴🇲"][0].lower(),
+        flags["🇺🇬"][0].lower(),
+        "_",
+        flags["🇦🇱"][0].lower(),
+        flags["🇷🇴"][0].lower(),
+        flags["🇪🇪"][0].lower(),
+        "_",
+        flags["🇮🇳"][0].lower(),
+        flags["🇳🇪"][0].lower(),
+        flags["🇻🇳"][0].lower(),
+        flags["🇪🇨"][0].lower(),
+        flags["🇳🇬"][0].lower(),
+        flags["🇹🇷"][0].lower(),
+        flags["🇮🇹"][0].lower(),
+        flags["🇻🇪"][0].lower(),
+        flags["🇪🇪"][0].lower(),
+        "}"
+    ]
 
-    flag = (''.join(flag_chars)[:5] + '{' + ''.join(flag_chars)[6:9].lower() + '_' + ''.join(flag_chars)[9:12].lower()
-            + '_' + ''.join(flag_chars)[12:].lower() + '}')
+    flag = "".join(item for item in message)
 
     return flag
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(get_flag())
