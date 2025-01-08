@@ -42,7 +42,7 @@ def unzip() -> str:
             return zf.namelist()[0]
     except FileNotFoundError:
         with ZipFile(f"{filename}.{filetype}") as zf:
-            zf.extractall(path=".")
+            zf.extractall(path='.')
             return zf.namelist()[0]
 
 
@@ -57,18 +57,18 @@ def decode_message() -> str:
     file_name = unzip()
 
     try:
-        with open(f"Gibberish/{file_name}", "r") as f:
+        with open(f"Gibberish/{file_name}", 'r') as f:
             task = f.readlines()
     except FileNotFoundError:
-        with open(f"{file_name}", "r") as f:
+        with open(f"{file_name}", 'r') as f:
             task = f.readlines()
 
-    decoded_message = (f"{task[0].rstrip().encode(encoding='koi8-r').decode('utf-8')}\n"
-                       f"{task[2].rstrip().encode(encoding='cp1251').decode('utf-8')}\n"
-                       f"{task[4].rstrip().encode(encoding='gb18030').decode('utf-8')}")
+    decoded_message = (f"""{task[0].rstrip().encode(encoding="koi8-r").decode("utf-8")}\n"""
+                       f"""{task[2].rstrip().encode(encoding="cp1251").decode("utf-8")}\n"""
+                       f"""{task[4].rstrip().encode(encoding="gb18030").decode("utf-8")}""")
 
     return decoded_message
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(decode_message())

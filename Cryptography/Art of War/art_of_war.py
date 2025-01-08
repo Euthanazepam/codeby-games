@@ -39,7 +39,7 @@ def unzip() -> None:
             zf.extractall(path="Art of War/")
     except FileNotFoundError:
         with ZipFile(f"{filename}.{filetype}") as zf:
-            zf.extractall(path=".")
+            zf.extractall(path='.')
 
 
 def get_flag() -> str:
@@ -58,10 +58,10 @@ def get_flag() -> str:
     cipher_text = 25183524468752482838730336135334402772668615375346038
     a = 3339
 
-    flag = bytes.fromhex(hex(cipher_text ^ a)[2:]).decode('utf-8')
+    flag = bytes.fromhex(hex(cipher_text ^ a)[2:]).decode("utf-8")
 
     return flag
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(get_flag())

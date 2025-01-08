@@ -42,7 +42,7 @@ def unzip() -> str:
             return zf.namelist()[0]
     except FileNotFoundError:
         with ZipFile(f"{filename}.{filetype}") as zf:
-            zf.extractall(path=".")
+            zf.extractall(path='.')
             return zf.namelist()[0]
 
 
@@ -59,10 +59,10 @@ def get_flag() -> str:
     file_name = unzip()
 
     try:
-        with open(f"Word for word/{file_name}", "r") as f:
+        with open(f"Word for word/{file_name}", 'r') as f:
             task = f.read()
     except FileNotFoundError:
-        with open(f"{file_name}", "r") as f:
+        with open(f"{file_name}", 'r') as f:
             task = f.read()
 
     hashes = task.split(' ')
@@ -75,5 +75,5 @@ def get_flag() -> str:
     return flag
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(get_flag())

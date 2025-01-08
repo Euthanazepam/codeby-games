@@ -40,7 +40,7 @@ def unzip() -> None:
             zf.extractall(path="Skeleton/")
     except FileNotFoundError:
         with ZipFile(f"{filename}.{filetype}") as zf:
-            zf.extractall(path=".")
+            zf.extractall(path='.')
 
 
 def get_flag() -> str:

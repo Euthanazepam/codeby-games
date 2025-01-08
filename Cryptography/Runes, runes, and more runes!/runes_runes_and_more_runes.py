@@ -38,7 +38,7 @@ def get_flag() -> str:
     if not exists(f"{filename}.{filetype}"):
         download_image()
 
-    runes = 'ᚱᚢᚾᛖᛋ ᚫᚱᛖ ᛏᛟᛟ ᚺᚫᚱᛞ'
+    runes = "ᚱᚢᚾᛖᛋ ᚫᚱᛖ ᛏᛟᛟ ᚺᚫᚱᛞ"
 
     mapping = {
         'ᚫ': 'a',
@@ -66,10 +66,10 @@ def get_flag() -> str:
         ' ': '_'
     }
 
-    flag = 'CODEBY{' + ''.join(mapping[o] for o in runes) + '}'
+    flag = "CODEBY{" + ''.join(mapping[o] for o in runes) + '}'
 
     return flag
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(get_flag())

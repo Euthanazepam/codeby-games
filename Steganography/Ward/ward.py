@@ -43,7 +43,7 @@ def unzip() -> str:
             return zf.namelist()[0]
     except FileNotFoundError:
         with ZipFile(f"{filename}.{filetype}") as zf:
-            zf.extractall(path=".")
+            zf.extractall(path='.')
             return zf.namelist()[0]
 
 

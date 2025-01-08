@@ -42,7 +42,7 @@ def unzip() -> str:
             return zf.namelist()[0]
     except FileNotFoundError:
         with ZipFile(f"{filename}.{filetype}") as zf:
-            zf.extractall(path=".")
+            zf.extractall(path='.')
             return zf.namelist()[0]
 
 
@@ -59,10 +59,10 @@ def get_flag() -> str:
     file_name = unzip()
 
     try:
-        with open(f"ABC/{file_name}", "r") as f:
+        with open(f"ABC/{file_name}", 'r') as f:
             task = f.readlines()
     except FileNotFoundError:
-        with open(f"{file_name}", "r") as f:
+        with open(f"{file_name}", 'r') as f:
             task = f.readlines()
 
     alphabet = {
@@ -76,10 +76,10 @@ def get_flag() -> str:
     for line in task:
         flag_chars.append(alphabet[len([i for i in line if i == '-'])])
 
-    flag = 'CODEBY{' + ''.join(flag_chars) + '}'
+    flag = "CODEBY{" + ''.join(flag_chars) + '}'
 
     return flag
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(get_flag())

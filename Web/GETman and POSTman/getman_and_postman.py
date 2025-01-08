@@ -15,7 +15,7 @@ def get_flag() -> str:
 
     response = post(f"{base_url}:{port}?{query_param}", json=payload)
 
-    flag = response.text.split("\n")[-1].split(": ")[-1]
+    flag = response.text.split('\n')[-1].split(": ")[-1]
 
     return flag
 

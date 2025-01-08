@@ -53,7 +53,7 @@ def get_flag() -> str:
         'ε': 'T',
         'C': 'U',
         '8': 'Y',
-        'ɱ': 'WHAT',
+        'ɱ': "WHAT",
         '⌐': '',
         '⏗': ''
     }
@@ -68,5 +68,5 @@ def get_flag() -> str:
     return flag
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(get_flag())

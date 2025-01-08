@@ -39,7 +39,7 @@ def unzip() -> None:
             zf.extractall(path="Flags/")
     except FileNotFoundError:
         with ZipFile(f"{filename}.{filetype}") as zf:
-            zf.extractall(path=".")
+            zf.extractall(path='.')
 
 
 def get_flag() -> str:
@@ -103,7 +103,7 @@ def get_flag() -> str:
         "}"
     ]
 
-    flag = "".join(item for item in message)
+    flag = ''.join(item for item in message)
 
     return flag
 

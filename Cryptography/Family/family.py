@@ -42,7 +42,7 @@ def unzip() -> str:
             return zf.namelist()[0]
     except FileNotFoundError:
         with ZipFile(f"{filename}.{filetype}") as zf:
-            zf.extractall(path=".")
+            zf.extractall(path='.')
             return zf.namelist()[0]
 
 
@@ -59,10 +59,10 @@ def get_flag() -> str:
     file_name = unzip()
 
     try:
-        with open(f"Family/{file_name}", "r") as f:
+        with open(f"Family/{file_name}", 'r') as f:
             family = f.read()
     except FileNotFoundError:
-        with open(f"{file_name}", "r") as f:
+        with open(f"{file_name}", 'r') as f:
             family = f.read()
 
     # I haven't figured out yet how to elegantly turn "U+73 U+79 U+73 U+74 U+33 U+6D U+73 U+7D"
@@ -75,22 +75,22 @@ def get_flag() -> str:
     # So I decided to use a dict.
 
     mapping = {
-        'U+33': '\u0033',
-        'U+73': '\u0073',
-        'U+74': '\u0074',
-        'U+79': '\u0079',
-        'U+6D': '\u006D',
-        'U+7D': '\u007D'
+        "U+33": "\u0033",
+        "U+73": "\u0073",
+        "U+74": "\u0074",
+        "U+79": "\u0079",
+        "U+6D": "\u006D",
+        "U+7D": "\u007D"
     }
 
-    flag = (f"{bytes.fromhex(family[:11]).decode('utf-8')}"  # hex to utf-8
-            f"{''.join((chr(int(i, 2)) for i in family[12:38].split(' ')))}"  # binary to ascii
-            f"{''.join(chr(int(o, 8)) for o in family[39:75].split(' '))}"  # octal to ascii
-            f"{''.join(chr(int(o)) for o in family[76:100].split(' '))}"  # int to ascii
-            f"{''.join(mapping[o] for o in family[101:].rstrip().split(' ')).encode().decode()}")  # unicode escape
+    flag = (f"""{bytes.fromhex(family[:11]).decode("utf-8")}"""                                     # hex to utf-8
+            f"{''.join((chr(int(i, 2)) for i in family[12:38].split(' ')))}"                        # binary to ascii
+            f"{''.join(chr(int(o, 8)) for o in family[39:75].split(' '))}"                          # octal to ascii
+            f"{''.join(chr(int(o)) for o in family[76:100].split(' '))}"                            # int to ascii
+            f"{''.join(mapping[o] for o in family[101:].rstrip().split(' ')).encode().decode()}")   # unicode escape
 
     return flag
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(get_flag())

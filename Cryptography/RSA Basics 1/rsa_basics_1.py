@@ -40,7 +40,7 @@ def unpack() -> None:
             tar.extractall(path=f"RSA Basics 1/")
     except FileNotFoundError:
         with tarfile.open(f"{filename}.{filetype}", 'r:*') as tar:
-            tar.extractall(path=".")
+            tar.extractall(path='.')
 
 
 def get_flag() -> str:
@@ -72,10 +72,10 @@ def get_flag() -> str:
         unpack()
 
     try:
-        with open("RSA Basics 1/data.txt", "r") as f:
+        with open("RSA Basics 1/data.txt", 'r') as f:
             data = f.readlines()
     except FileNotFoundError:
-        with open("data.txt", "r") as f:
+        with open("data.txt", 'r') as f:
             data = f.readlines()
 
     try:
@@ -96,10 +96,10 @@ def get_flag() -> str:
     decrypted_message = pow(c, d, n)
 
     # The flag is at the end of the message.
-    flag = decrypted_message.to_bytes(c.bit_length() // 8, 'big')[-29:].decode()
+    flag = decrypted_message.to_bytes(c.bit_length() // 8, "big")[-29:].decode()
 
     return flag
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(get_flag())

@@ -42,7 +42,7 @@ def unzip() -> str:
             return zf.namelist()[0]
     except FileNotFoundError:
         with ZipFile(f"{filename}.{filetype}") as zf:
-            zf.extractall(path=".")
+            zf.extractall(path='.')
             return zf.namelist()[0]
 
 
@@ -58,10 +58,10 @@ def get_flag() -> str:
     file_name = unzip()
 
     try:
-        with open(f"Bookworm/{file_name}", "r") as f:
+        with open(f"Bookworm/{file_name}", 'r') as f:
             task = f.read().rstrip()    # rstrip() is used to remove the '\n' character from the end of a string.
     except FileNotFoundError:
-        with open(f"{file_name}", "r") as f:
+        with open(f"{file_name}", 'r') as f:
             task = f.read().rstrip()    # rstrip() is used to remove the '\n' character from the end of a string.
 
     mapping = {
@@ -92,10 +92,10 @@ def get_flag() -> str:
     for char in task:
         flag_chars.append(mapping[char])
 
-    flag = 'CODEBY{' + ''.join(flag_chars) + '}'
+    flag = "CODEBY{" + ''.join(flag_chars) + '}'
 
     return flag
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(get_flag())

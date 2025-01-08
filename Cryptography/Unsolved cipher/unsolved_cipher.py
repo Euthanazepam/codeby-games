@@ -42,7 +42,7 @@ def unzip() -> str:
             return zf.namelist()[0]
     except FileNotFoundError:
         with ZipFile(f"{filename}.{filetype}") as zf:
-            zf.extractall(path=".")
+            zf.extractall(path='.')
             return zf.namelist()[0]
 
 
@@ -84,10 +84,10 @@ def get_flag() -> str:
     file_name = unzip()
 
     try:
-        with open(f"Unsolved cipher/{file_name}", "r") as f:
+        with open(f"Unsolved cipher/{file_name}", 'r') as f:
             not_solved_cipher = f.readlines()
     except FileNotFoundError:
-        with open(f"{file_name}", "r") as f:
+        with open(f"{file_name}", 'r') as f:
             not_solved_cipher = f.readlines()
 
     cipher_text = not_solved_cipher[0][6:].replace('{', '').replace('}', '').rstrip()
@@ -100,5 +100,5 @@ def get_flag() -> str:
     return flag
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(get_flag())

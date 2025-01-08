@@ -39,7 +39,7 @@ def unzip() -> None:
             zf.extractall(path="Musical accompaniment/")
     except FileNotFoundError:
         with ZipFile(f"{filename}.{filetype}") as zf:
-            zf.extractall(path=".")
+            zf.extractall(path='.')
 
 
 def get_flag() -> str:
@@ -56,23 +56,23 @@ def get_flag() -> str:
         unzip()
 
     mapping = {
-        'do1': 'o',
-        'do11': 'a',
-        're1': 'p',
-        're11': 'b',
-        'fa1': 'r',
-        'sol11': 'e',
-        're2': 'w',
-        'fa2': 'y',
-        'sol21': 'l'
+        "do1":      'o',
+        "do11":     'a',
+        "re1":      'p',
+        "re11":     'b',
+        "fa1":      'r',
+        "sol11":    'e',
+        "re2":      'w',
+        "fa2":      'y',
+        "sol21":    'l'
     }
 
-    cipher = ['re2', 'sol11', 'sol21', 'sol21', 're1', 'sol21', 'do11', 'fa2', 're11', 'fa1', 'do1']
+    cipher = ["re2", "sol11", "sol21", "sol21", "re1", "sol21", "do11", "fa2", "re11", "fa1", "do1"]
 
-    flag = 'CODEBY{' + ''.join(mapping[note] for note in cipher) + '}'
+    flag = "CODEBY{" + ''.join(mapping[note] for note in cipher) + '}'
 
     return flag
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(get_flag())

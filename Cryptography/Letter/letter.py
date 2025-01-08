@@ -42,7 +42,7 @@ def unzip() -> str:
             return zf.namelist()[0]
     except FileNotFoundError:
         with ZipFile(f"{filename}.{filetype}") as zf:
-            zf.extractall(path=".")
+            zf.extractall(path='.')
             return zf.namelist()[0]
 
 
@@ -56,45 +56,45 @@ def get_flag() -> str:
     file_name = unzip()
 
     try:
-        with open(f"Letter/{file_name}", "r") as f:
+        with open(f"Letter/{file_name}", 'r') as f:
             cypher = f.readlines()
     except FileNotFoundError:
-        with open(f"{file_name}", "r") as f:
+        with open(f"{file_name}", 'r') as f:
             cypher = f.readlines()
 
     flag_string = cypher[48]
 
     # Mapping was done manually.
     mapping = {
-        "a": "t",
-        "b": "n",
-        "c": "w",
-        "d": "b",
-        "e": "f",
-        "g": "c",
-        "i": "k",
-        "j": "m",
-        "k": "i",
-        "l": "s",
-        "m": "g",
-        "n": "e",
-        "o": "u",
-        "p": "p",
-        "q": "y",
-        "r": "d",
-        "s": "r",
-        "t": "m",
-        "u": "h",
-        "w": "o",
-        "x": "a",
-        "y": "l",
-        "{": "{",
-        "}": "}",
-        "_": "_",
-        "0": "0",
-        "1": "1",
-        "6": "6",
-        "8": "8"
+        'a': 't',
+        'b': 'n',
+        'c': 'w',
+        'd': 'b',
+        'e': 'f',
+        'g': 'c',
+        'i': 'k',
+        'j': 'm',
+        'k': 'i',
+        'l': 's',
+        'm': 'g',
+        'n': 'e',
+        'o': 'u',
+        'p': 'p',
+        'q': 'y',
+        'r': 'd',
+        's': 'r',
+        't': 'm',
+        'u': 'h',
+        'w': 'o',
+        'x': 'a',
+        'y': 'l',
+        '{': '{',
+        '}': '}',
+        '_': '_',
+        '0': '0',
+        '1': '1',
+        '6': '6',
+        '8': '8'
     }
 
     flag_chars = []
@@ -107,5 +107,5 @@ def get_flag() -> str:
     return flag
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(get_flag())

@@ -39,7 +39,7 @@ def unzip() -> None:
             zf.extractall(path="The Fiftieth Anniversary Mystery/")
     except FileNotFoundError:
         with ZipFile(f"{filename}.{filetype}") as zf:
-            zf.extractall(path=".")
+            zf.extractall(path='.')
 
 
 def get_flag() -> str:
@@ -57,7 +57,7 @@ def get_flag() -> str:
         unzip()
 
     # The encrypted text uses similarly written symbols.
-    encrypted_message = 'OXHJπYO⌖🞎ꟼI'
+    encrypted_message = "OXHJπYO⌖🞎ꟼI"
 
     mapping = {
         'O': 'N',
@@ -77,10 +77,10 @@ def get_flag() -> str:
     for item in encrypted_message:
         flag_chars.append(mapping[item])
 
-    flag = 'CODEBY{' + ''.join(flag_chars) + '}'
+    flag = "CODEBY{" + ''.join(flag_chars) + '}'
 
     return flag
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(get_flag())

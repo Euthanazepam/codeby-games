@@ -40,7 +40,7 @@ def unzip() -> None:
             zf.extractall(path="RSA 2 Basics/")
     except FileNotFoundError:
         with ZipFile(f"{filename}.{filetype}") as zf:
-            zf.extractall(path=".")
+            zf.extractall(path='.')
 
 
 def get_flag() -> str:
@@ -58,14 +58,14 @@ def get_flag() -> str:
         unzip()
 
     try:
-        with open("RSA 2 Basics/data.txt", "r") as f:
+        with open("RSA 2 Basics/data.txt", 'r') as f:
             data = f.readlines()
     except FileNotFoundError:
-        with open("data.txt", "r") as f:
+        with open("data.txt", 'r') as f:
             data = f.readlines()
 
     try:
-        with open('RSA 2 Basics/flag.txt', 'rb') as f:
+        with open("RSA 2 Basics/flag.txt", "rb") as f:
             flag_txt = f.read()
     except FileNotFoundError:
         with open("flag.txt", "rb") as f:
@@ -86,10 +86,10 @@ def get_flag() -> str:
     decrypted_message = pow(c, d, n)
 
     # The flag is at the end of the message.
-    flag = decrypted_message.to_bytes(c.bit_length() // 8, 'big')[-41:].decode()
+    flag = decrypted_message.to_bytes(c.bit_length() // 8, "big")[-41:].decode()
 
     return flag
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(get_flag())
