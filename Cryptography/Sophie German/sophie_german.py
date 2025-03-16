@@ -65,9 +65,9 @@ def get_flag() -> str:
         with open(f"{file_name}", 'r') as f:
             task = f.readlines()
 
-    n = int(task[0][4:].replace(',', '').replace('\n', ''))
-    e = int(task[1][4:].replace(',', '').replace('\n', ''))
-    c = int(task[2][4:].replace(',', '').replace('\n', ''))
+    n = int(task[0][4:])
+    e = int(task[1][4:])
+    c = int(task[2][4:])
 
     # Use http://factordb.com to factorize n.
     f = FactorDB(n)
