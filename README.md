@@ -1,1 +1,1 @@
-The repository contains challenge solutions from https://codeby.games.
+The repository contains challenge solutions from https://hackerlab.pro (former https://codeby.games).

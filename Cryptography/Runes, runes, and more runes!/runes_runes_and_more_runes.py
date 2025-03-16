@@ -1,5 +1,5 @@
 from os.path import exists
-from requests import get
+from requests import get    # pip install requests
 
 base_url = "https://codeby.games"
 path = "game_api/files/download"

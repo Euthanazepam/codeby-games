@@ -1,7 +1,7 @@
 import tarfile
 
 from os.path import exists
-from requests import get
+from requests import get    # pip install requests
 
 base_url = "https://codeby.games"
 path = "game_api/files/download"
@@ -54,13 +54,13 @@ def get_flag() -> str:
         φ(n) = (p - 1) * (q - 1)
 
         d — secret exponent
-        d = e^(-1) mod φ(n)
+        d = e⁻¹ mod φ(n)
 
         Public key:     (n, e)
         Private key:    (n, d)
 
-        Encryption:     c = m^e mod n
-        Decryption:     m = c^d mod n
+        Encryption:     c = mᵉ mod n
+        Decryption:     m = cᵈ mod n
 
     References:
         1. RSA Decoder — https://www.dcode.fr/rsa-cipher

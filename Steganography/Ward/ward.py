@@ -1,5 +1,5 @@
 from os.path import exists
-from requests import get
+from requests import get    # pip install requests
 from xml.etree.ElementTree import parse
 from zipfile import ZipFile
 

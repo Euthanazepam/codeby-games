@@ -1,4 +1,4 @@
-from requests import get
+from requests import get    # pip install requests
 
 
 def get_flag() -> str:
