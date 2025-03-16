@@ -54,6 +54,7 @@ def get_flag() -> str:
 
     References:
         1. Morse Code Converter — https://symbl.cc/en/tools/morse
+        2. International Morse Code — https://morsecode.world/international/morse2.html
 
     :return: Flag
     """
